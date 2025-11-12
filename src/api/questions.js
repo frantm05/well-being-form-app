@@ -1,5 +1,5 @@
-// Use relative path for both dev and production - works with Vite proxy and Netlify redirects
-export const API_URL = '/api/questions';
+// Use API path that works with both Vite dev proxy and Netlify functions
+export const API_URL = '/api/getQuestions';
 
 export function groupQuestionsByCategory(items = []) {
   return items.reduce((acc, q) => {
@@ -15,11 +15,27 @@ export function groupQuestionsByCategory(items = []) {
 }
 
 export async function fetchQuestions() {
-  const res = await fetch(API_URL, { method: 'GET' });
-  if (!res.ok) {
-    throw new Error(`Network response was not ok: ${res.statusText}`);
+  try {
+    console.log('Fetching questions from:', API_URL);
+    const res = await fetch(API_URL, { 
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error('Fetch error:', res.status, errorText);
+      throw new Error(`Network response was not ok: ${res.status} ${res.statusText}`);
+    }
+    
+    const parsed = await res.json();
+    console.log('Questions received:', parsed);
+    const items = Array.isArray(parsed) ? parsed : (parsed.body || parsed.items || []);
+    return groupQuestionsByCategory(items);
+  } catch (error) {
+    console.error('fetchQuestions error:', error);
+    throw error;
   }
-  const parsed = await res.json();
-  const items = Array.isArray(parsed) ? parsed : (parsed.body || parsed.items || []);
-  return groupQuestionsByCategory(items);
 }
