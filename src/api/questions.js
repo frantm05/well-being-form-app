@@ -1,7 +1,5 @@
-// Use dev proxy path during development, otherwise call the Wix function URL directly.
-export const API_URL = import.meta.env.DEV
-  ? '/api/questions'
-  : 'https://matejfrantik.wixsite.com/well-being-form/_functions/getQuestions';
+// Use relative path for both dev and production - works with Vite proxy and Netlify redirects
+export const API_URL = '/api/questions';
 
 export function groupQuestionsByCategory(items = []) {
   return items.reduce((acc, q) => {
