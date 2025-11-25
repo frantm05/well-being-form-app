@@ -45,6 +45,10 @@
     position: relative;
 }
 
+.main-content > :last-child {
+    margin-top: auto;
+}
+
 .question-header {
     display: flex;
     justify-content: center;
@@ -98,8 +102,7 @@
     display: flex;
     align-items: center;
     min-height: 200px;
-    max-height: 350px;
-    overflow-y: auto;
+    max-height: auto;
     position: relative;
 }
 
@@ -107,7 +110,7 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem !important;
     width: 100%;
     position: relative;
     bottom: 0;
