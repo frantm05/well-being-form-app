@@ -19,7 +19,7 @@
   align-items: center;
   gap: 16px;
   position: absolute;
-  top: 42rem;
+  bottom: 0rem;
 }
 
 .slider-input {
