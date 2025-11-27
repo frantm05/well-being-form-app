@@ -35,7 +35,7 @@ export function IntroForm({ onComplete }) {
   };
 
   const loadApiCountries = (inputValue) => {
-    const fetchUrl = `http://universities.hipolabs.com/search?name=${encodeURIComponent(inputValue)}`;
+    const fetchUrl = `https://universities.hipolabs.com/search?name=${encodeURIComponent(inputValue)}`;
 
     return fetch(fetchUrl)
       .then((response) => response.json())
@@ -59,7 +59,7 @@ export function IntroForm({ onComplete }) {
     }
 
     const apiCountryName = personalInfo.country.value;
-    let apiUrl = `http://universities.hipolabs.com/search?country=${encodeURIComponent(apiCountryName)}`;
+    let apiUrl = `https://universities.hipolabs.com/search?country=${encodeURIComponent(apiCountryName)}`;
 
     if (inputValue) {
       apiUrl += `&name=${encodeURIComponent(inputValue)}`;
