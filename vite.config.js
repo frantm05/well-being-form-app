@@ -12,6 +12,13 @@ export default defineConfig({
         changeOrigin: true,
         secure: true,
         rewrite: (path) => '/well-being-form/_functions/getQuestions'
+      },
+      // Proxy universities API in development
+      '/api/getUniversities': {
+        target: 'http://universities.hipolabs.com',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace('/api/getUniversities', '/search')
       }
     }
   }
