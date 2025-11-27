@@ -7,9 +7,34 @@
 
 .results-container h2 {
   text-align: center;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
   color: #c75b7a;
   font-size: 2.5rem;
+}
+
+.overall-average {
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  padding: 15px;
+  background-color: rgba(199, 91, 122, 0.1);
+  border-left: 4px solid #c75b7a;
+  border-radius: 8px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.average-label {
+  color: rgba(255, 255, 255, 0.87);
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.average-value {
+  color: #c75b7a;
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
 .flower-chart {
@@ -17,7 +42,7 @@
   justify-content: center;
   align-items: center;
   margin: 0px auto;
-  width: 100%;
+  width: 70%;
   max-width: 1100px;
 }
 
@@ -41,9 +66,95 @@
   font-weight: 500;
 }
 
+.final-evaluation {
+  max-width: 800px;
+  margin: 0 auto 0;
+  padding: 30px;
+  background-color: rgba(199, 91, 122, 0.1);
+  border-left: 4px solid #c75b7a;
+  border-radius: 8px;
+}
+
+.final-evaluation h3 {
+  color: #c75b7a;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.evaluation-message {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.87);
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.evaluation-scale {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.scale-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.scale-item:hover {
+  background-color: rgba(199, 91, 122, 0.15);
+}
+
+.scale-range {
+  color: #c75b7a;
+  font-weight: 700;
+  font-size: 1.1rem;
+  min-width: 60px;
+  margin-right: 15px;
+}
+
+.scale-text {
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 1rem;
+}
+
 @media (prefers-color-scheme: light) {
   .category-score {
     fill: #555;
+  }
+
+  .average-label {
+    color: #213547;
+  }
+
+  .overall-average {
+    background-color: rgba(199, 91, 122, 0.1);
+  }
+
+  .final-evaluation {
+    background-color: rgba(199, 91, 122, 0.1);
+  }
+
+  .evaluation-message {
+    color: #213547;
+  }
+
+  .scale-item {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .scale-item:hover {
+    background-color: rgba(199, 91, 122, 0.15);
+  }
+
+  .scale-text {
+    color: #213547;
   }
 }
 
@@ -59,6 +170,14 @@
   .category-score {
     font-size: 13px;
   }
+
+  .final-evaluation {
+    padding: 20px;
+  }
+
+  .evaluation-message {
+    font-size: 1.1rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -72,5 +191,32 @@
   
   .category-score {
     font-size: 12px;
+  }
+
+  .overall-average {
+    font-size: 1.2rem;
+  }
+
+  .average-value {
+    font-size: 1.5rem;
+  }
+
+  .final-evaluation h3 {
+    font-size: 1.5rem;
+  }
+
+  .evaluation-message {
+    font-size: 1rem;
+  }
+
+  .scale-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .scale-range {
+    min-width: auto;
+    margin-right: 0;
   }
 }

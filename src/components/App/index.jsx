@@ -3,6 +3,7 @@ import { useWellBeing } from "../../hooks/useWellBeing";
 import { CategoryMenu } from "../CategoryMenu/CategoryMenu";
 import { QuestionSlider } from "../QuestionSlider/QuestionSlider";
 import { Results } from "../Results/Results";
+import { IntroForm } from "../IntroForm/IntroForm";
 import "./style.css";
 
 export default function App() {
@@ -15,6 +16,8 @@ export default function App() {
   } = useWellBeing();
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
+  const [personalInfo, setPersonalInfo] = useState(null);
 
   const {
     categories,
@@ -26,6 +29,11 @@ export default function App() {
     currentCategoryKey,
     currentQuestionIndex,
   } = state;
+
+  const handleIntroComplete = (info) => {
+    setPersonalInfo(info);
+    setShowIntro(false);
+  };
 
   if (loadingError) {
     return (
@@ -91,6 +99,8 @@ export default function App() {
 
   return (
     <div className="app-container">
+      {showIntro && <IntroForm onComplete={handleIntroComplete} />}
+
       <h1>Well-being form</h1>
       <div className="main-layout">
         <CategoryMenu
@@ -146,7 +156,7 @@ export default function App() {
                 ) : (
                   <>
                     <button onClick={() => navigateQuestion(1, true)}>
-                      Skip
+                      Not relevant
                     </button>
                     <button
                       onClick={() => {
