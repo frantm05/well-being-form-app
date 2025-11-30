@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-md);
 }
 
 .question-text {
@@ -17,14 +17,14 @@
   display: flex;
   width: 44rem;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-md);
   position: absolute;
-  bottom: 0rem;
+  bottom: 0;
 }
 
 .slider-input {
   flex: 1;
-  accent-color: #c75b7a;
+  accent-color: var(--color-primary);
 }
 
 .slider-value {

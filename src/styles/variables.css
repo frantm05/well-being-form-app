@@ -1,0 +1,61 @@
+:root {
+  /* Brand Colors */
+  --color-primary: #c75b7a;
+  --color-primary-dark: #a33a58ff;
+  --color-primary-darker: #811035ff;
+  --color-primary-light: rgba(199, 91, 122, 0.1);
+  --color-primary-medium: rgba(199, 91, 122, 0.2);
+  --color-primary-hover: rgba(199, 91, 122, 0.4);
+  
+  /* Neutral Colors */
+  --color-bg: #242424;
+  --color-bg-dark: #1a1a1a;
+  --color-bg-darker: #0a0a0a;
+  --color-bg-light: #2a2a2a;
+  --color-border: #333;
+  --color-border-light: #444;
+  --color-border-lighter: #555;
+  
+  /* Text Colors */
+  --color-text: rgba(255, 255, 255, 0.87);
+  --color-text-medium: rgba(255, 255, 255, 0.7);
+  --color-text-light: rgba(255, 255, 255, 0.6);
+  --color-text-lighter: rgba(255, 255, 255, 0.4);
+  
+  /* Utility Colors */
+  --color-success: rgba(0, 128, 0, 0.2);
+  --color-success-border: green;
+  
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s;
+  --transition-medium: 0.25s;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #ffffff;
+    --color-bg-dark: #f9f9f9;
+    --color-bg-darker: #f0f0f0;
+    --color-bg-light: #fff;
+    --color-border: #ddd;
+    --color-border-light: #ccc;
+    --color-border-lighter: #bbb;
+    
+    --color-text: #213547;
+    --color-text-medium: #666;
+    --color-text-light: #555;
+    --color-text-lighter: #999;
+  }
+}

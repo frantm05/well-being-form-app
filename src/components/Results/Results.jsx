@@ -4,6 +4,20 @@ export function Results({ results, categories }) {
   const categoryScores = results.categoryScores;
   const maxAvg = Math.max(...categoryScores.map((c) => c.avg));
 
+  // Define colors for each petal with adjusted opacity for balance
+  const petalColors = [
+    { color: "#fae641", opacity: 0.55 }, // Yellow - slightly reduced
+    { color: "#213f7e", opacity: 0.8 }, // Dark blue - good as is
+    { color: "#e4302f", opacity: 0.55 }, // Red - reduced for less intensity
+    { color: "#f1d0d1", opacity: 0.65 }, // Light pink - good as is
+    { color: "#f37462", opacity: 0.6 }, // Coral - slightly reduced
+    { color: "#5b3f8a", opacity: 0.7 }, // Purple - slightly reduced
+    { color: "#41b2ab", opacity: 0.65 }, // Teal - slightly reduced
+    { color: "#904b4f", opacity: 0.75 }, // Brown-red - slightly reduced
+    { color: "#8ab942", opacity: 0.6 }, // Green - slightly reduced
+    { color: "#ed168b", opacity: 0.5 }, // Hot pink - most reduced
+  ];
+
   // Calculate overall average
   const overallAverage =
     categoryScores.length > 0
@@ -37,9 +51,10 @@ export function Results({ results, categories }) {
   const createPetalPath = (angle, avg, maxAvg) => {
     const maxRadius = 456;
     const minRadius = 62;
-    const radius = maxAvg === 0
-      ? minRadius
-      : minRadius + (avg / maxAvg) * (maxRadius - minRadius);
+    const radius =
+      maxAvg === 0
+        ? minRadius
+        : minRadius + (avg / maxAvg) * (maxRadius - minRadius);
     const petalWidth = 0.32; // Narrower petals for more elongated look
 
     const centerX = 750;
@@ -133,14 +148,15 @@ export function Results({ results, categories }) {
           {categoryScores.map((cat, index) => {
             const coords = getCoordinates(index, categoryScores.length, 0);
             const path = createPetalPath(coords.angle, cat.avg, maxAvg);
+            const petalStyle = petalColors[index % petalColors.length];
 
             return (
               <path
                 key={`petal-${index}`}
                 d={path}
-                fill="#c75b7a"
-                fillOpacity="0.7"
-                stroke="#811035ff"
+                fill={petalStyle.color}
+                fillOpacity={petalStyle.opacity}
+                stroke="#333"
                 strokeWidth="2"
               />
             );

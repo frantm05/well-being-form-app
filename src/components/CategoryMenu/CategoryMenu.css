@@ -1,20 +1,20 @@
 .category-menu {
   width: 250px;
-  border-right: 1px solid #444;
-  padding-right: 24px;
+  border-right: 1px solid var(--color-border-light);
+  padding-right: var(--spacing-lg);
   overflow-y: auto;
 }
 
 .category-menu h2 {
   margin-top: 0;
-  margin-bottom: 24px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #c75b7a;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-primary);
   font-size: 1.5rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #c75b7a;
+  color: var(--color-primary);
 }
 
 .category-group {
@@ -23,18 +23,18 @@
 
 .category-title {
   cursor: pointer;
-  margin: 0 0 12px 0;
+  margin: 0 0 var(--spacing-sm) 0;
   font-size: 1.1rem;
   font-weight: 400;
-  transition: color 0.2s;
+  transition: color var(--transition-fast);
 }
 
 .category-title:hover {
-  color: #c75b7a;
+  color: var(--color-primary);
 }
 
 .category-title.active {
-  color: #c75b7a;
+  color: var(--color-primary);
   font-weight: 500;
 }
 
@@ -44,28 +44,28 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--spacing-xs);
 }
 
 .question-item {
   cursor: pointer;
-  padding: 8px 12px;
-  border: 1px solid #555;
-  border-radius: 4px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-border-lighter);
+  border-radius: var(--radius-sm);
   min-width: 36px;
   text-align: center;
-  transition: all 0.2s;
+  transition: all var(--transition-fast);
   font-weight: normal;
 }
 
 .question-item:hover {
-  background-color: rgba(199, 91, 122, 0.1);
-  border-color: #c75b7a;
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
 }
 
 .question-item.answered {
-  background-color: rgba(0, 128, 0, 0.2);
-  border-color: green;
+  background-color: var(--color-success);
+  border-color: var(--color-success-border);
   color: inherit;
   font-weight: normal;
 }
