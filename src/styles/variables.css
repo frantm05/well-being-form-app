@@ -43,6 +43,7 @@
   --transition-medium: 0.25s;
 }
 
+/*
 @media (prefers-color-scheme: light) {
   :root {
     --color-bg: #ffffff;
@@ -59,3 +60,4 @@
     --color-text-lighter: #999;
   }
 }
+  */

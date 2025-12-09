@@ -13,9 +13,11 @@ export default defineConfig({
       // Forward dev requests to Wix function
       "/api/getQuestions": {
         target: "https://matejfrantik.wixsite.com",
+        //target: "https://www.uniwellsity.com",
         changeOrigin: true,
         secure: true,
         rewrite: (path) => "/well-being-form/_functions/getQuestions",
+        //rewrite: (path) => "/_functions/getQuestions",
       },
       // Proxy universities API in development
       "/api/getUniversities": {
