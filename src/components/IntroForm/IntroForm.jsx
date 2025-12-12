@@ -90,8 +90,6 @@ export function IntroForm({ onComplete }) {
 
   const isPersonalInfoComplete = () => {
     return (
-      personalInfo.firstName.trim() &&
-      personalInfo.lastName.trim() &&
       personalInfo.age &&
       personalInfo.gender &&
       personalInfo.country &&
@@ -208,26 +206,17 @@ export function IntroForm({ onComplete }) {
       <div className="intro-modal">
         {step === 1 ? (
           <>
-            <h2>Welcome to the Well-being Form</h2>
+            <h2>Welcome to your Well-being Form</h2>
             <p>Please provide some information about yourself:</p>
             <form className="personal-info-form">
               <div className="form-row">
                 <div className="form-group">
-                  <label>First Name</label>
+                  <label>Nickname (optional)</label>
                   <input
                     type="text"
                     value={personalInfo.firstName}
                     onChange={(e) => handleChange("firstName", e.target.value)}
                     placeholder="First name"
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Last Name</label>
-                  <input
-                    type="text"
-                    value={personalInfo.lastName}
-                    onChange={(e) => handleChange("lastName", e.target.value)}
-                    placeholder="Last name"
                   />
                 </div>
               </div>

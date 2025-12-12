@@ -11,6 +11,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Disable text selection globally */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 a {
@@ -57,6 +63,16 @@ button {
   &:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
+}
+
+/* Re-enable text selection for inputs and textareas */
+input,
+textarea,
+[contenteditable="true"] {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 @media (prefers-color-scheme: light) {

@@ -49,11 +49,18 @@ export function useWellBeing() {
     try {
       const categoryScores = Object.keys(categories).map((catKey) => {
         const qs = categories[catKey].questions;
-        const sum = qs.reduce(
+        // Only count answered questions
+        const answeredQuestions = qs.filter(
+          (q) => answers?.[catKey]?.[q.id] !== undefined
+        );
+        const sum = answeredQuestions.reduce(
           (s, q) => s + (answers?.[catKey]?.[q.id] ?? 0),
           0
         );
-        const avg = qs.length ? sum / qs.length : 0;
+        // Divide by number of answered questions, not total questions
+        const avg = answeredQuestions.length
+          ? sum / answeredQuestions.length
+          : 0;
         return { category: catKey, sum, avg };
       });
       const overall = categoryScores.reduce((s, c) => s + c.sum, 0);
@@ -72,6 +79,10 @@ export function useWellBeing() {
 
   const handleAnswerChange = (category, questionId, value) => {
     dispatch({ type: "SET_ANSWER", payload: { category, questionId, value } });
+  };
+
+  const handleDeleteAnswer = (category, questionId) => {
+    dispatch({ type: "DELETE_ANSWER", payload: { category, questionId } });
   };
 
   const navigateQuestion = (direction) => {
@@ -115,6 +126,7 @@ export function useWellBeing() {
     state,
     handleSelectQuestion,
     handleAnswerChange,
+    handleDeleteAnswer,
     navigateQuestion,
     onSubmit,
   };

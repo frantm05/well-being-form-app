@@ -4,7 +4,7 @@ import './CategoryMenu.css';
 export function CategoryMenu({ categories, answers, currentCategoryKey, onSelectQuestion }) {
   return (
     <aside className="category-menu">
-      <h2>Kategorie</h2>
+      <h2>Well-being dimensions</h2>
       {Object.entries(categories).map(([key, category]) => {
         const answeredCount = category.questions.filter(q => answers?.[key]?.[q.id] !== undefined).length;
         const totalCount = category.questions.length;

@@ -1,6 +1,6 @@
 export async function handler(event, context) {
-  const WIX_API_URL = 'https://matejfrantik.wixsite.com/well-being-form/_functions/getQuestions';
-  //const WIX_API_URL = 'https://www.uniwellsity.com/_functions/getQuestions';
+  //const WIX_API_URL = 'https://matejfrantik.wixsite.com/well-being-form/_functions/getQuestions';
+  const WIX_API_URL = 'https://www.uniwellsity.com/_functions/getQuestions';
 
   // Add CORS headers for preflight requests
   if (event.httpMethod === 'OPTIONS') {

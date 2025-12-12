@@ -11,6 +11,7 @@ export default function App() {
     state,
     handleSelectQuestion,
     handleAnswerChange,
+    handleDeleteAnswer,
     navigateQuestion,
     onSubmit,
   } = useWellBeing();
@@ -81,7 +82,7 @@ export default function App() {
 
   const handleSubmitClick = () => {
     const unanswered = checkUnansweredQuestions();
-    if (unanswered > 0) {
+    if (unanswered > 1) {
       setShowConfirmModal(true);
     } else {
       onSubmit();
@@ -146,16 +147,48 @@ export default function App() {
               <div className="navigation-buttons">
                 <button onClick={() => navigateQuestion(-1)}>Previous</button>
                 {isLastQuestionInForm ? (
-                  <button
-                    onClick={handleSubmitClick}
-                    disabled={submitting}
-                    className="submit-button"
-                  >
-                    {submitting ? "Submitting..." : "Show results"}
-                  </button>
+                  <>
+                    <button
+                      onClick={() => {
+                        handleDeleteAnswer(
+                          currentCategoryKey,
+                          currentQuestion.id
+                        );
+                        handleSubmitClick();
+                      }}
+                    >
+                      Not relevant
+                    </button>
+                    <button
+                      onClick={() => {
+                        // Save current value before submitting
+                        const currentValue =
+                          answers?.[currentCategoryKey]?.[currentQuestion.id] ??
+                          5;
+                        handleAnswerChange(
+                          currentCategoryKey,
+                          currentQuestion.id,
+                          currentValue
+                        );
+                        handleSubmitClick();
+                      }}
+                      disabled={submitting}
+                      className="submit-button"
+                    >
+                      {submitting ? "Submitting..." : "Show results"}
+                    </button>
+                  </>
                 ) : (
                   <>
-                    <button onClick={() => navigateQuestion(1, true)}>
+                    <button
+                      onClick={() => {
+                        handleDeleteAnswer(
+                          currentCategoryKey,
+                          currentQuestion.id
+                        );
+                        navigateQuestion(1, false);
+                      }}
+                    >
                       Not relevant
                     </button>
                     <button

@@ -104,11 +104,15 @@ export function Results({ results, categories }) {
 
   return (
     <div className="results-container">
-      <h2>Results</h2>
+      <h2>Your Well-being Evaluation</h2>
 
-      <div className="overall-average">
-        <span className="average-label">Overall Average:</span>
-        <span className="average-value">{overallAverage.toFixed(1)}</span>
+      <div className="final-evaluation">
+        <div className="evaluation-content">
+          <span className="evaluation-score">{overallAverage.toFixed(1)}</span>
+          <p className="evaluation-message">
+            {getEvaluationMessage(overallAverage)}
+          </p>
+        </div>
       </div>
 
       <div className="flower-chart">
@@ -205,32 +209,7 @@ export function Results({ results, categories }) {
         </svg>
       </div>
 
-      <div className="final-evaluation">
-        <h3>Your Well-being Evaluation</h3>
-        <p className="evaluation-message">
-          {getEvaluationMessage(overallAverage)}
-        </p>
-        <div className="evaluation-scale">
-          <div className="scale-item">
-            <span className="scale-range">0–2:</span>
-            <span className="scale-text">Low - Be gentle with yourself</span>
-          </div>
-          <div className="scale-item">
-            <span className="scale-range">3–4:</span>
-            <span className="scale-text">Sensitive - Prioritize yourself</span>
-          </div>
-          <div className="scale-item">
-            <span className="scale-range">5–7:</span>
-            <span className="scale-text">Good - Keep nurturing it</span>
-          </div>
-          <div className="scale-item">
-            <span className="scale-range">8–10:</span>
-            <span className="scale-text">
-              Excellent - Keep up the good work!
-            </span>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 }

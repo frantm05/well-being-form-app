@@ -3,11 +3,11 @@ export const API_URL = '/api/getQuestions';
 
 export function groupQuestionsByCategory(items = []) {
   return items.reduce((acc, q) => {
-    const cat = q.categoryName || q.category || 'Uncategorized';
+    const cat = q.positiveEmotions || q.category || 'Uncategorized';
     if (!acc[cat]) acc[cat] = { title: cat, questions: [] };
     acc[cat].questions.push({
       id: q._id || q.id,
-      text: q.questionText || q.text || '',
+      text: q.question || q.text || '',
       raw: q
     });
     return acc;
