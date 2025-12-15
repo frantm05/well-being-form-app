@@ -55,7 +55,6 @@
   font-size: clamp(1rem, 2.5vw, 1.3rem);
   line-height: 1.6;
   color: var(--color-text);
-  text-shadow: #222 0.7px 0.7px 1.2px;
   text-align: left;
   margin: 0;
   font-weight: 500;
@@ -99,16 +98,6 @@
   font-weight: 500;
 }
 
-@media (prefers-color-scheme: light) {
-  .category-score {
-    fill: var(--color-text-light);
-  }
-
-  .scale-item {
-    background-color: rgba(0, 0, 0, 0.03);
-  }
-}
-
 /* Tablet */
 @media (max-width: 768px) {
   .flower-svg {
@@ -125,11 +114,11 @@
   }
 
   .category-label {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
   }
 
   .category-score {
-    font-size: 1.8rem;
+    font-size: 18px;
   }
 }
 
@@ -161,18 +150,28 @@
 
   /* Match label size to evaluation message (1rem baseline) */
   .category-label {
-    font-size: 2.1rem;
+    font-size: 1rem;
+    font-weight: 700;
     letter-spacing: 0.3px;
   }
 
   .category-score {
-    font-size: 1.875rem;
+    font-size: 0.875rem;
     font-weight: 600;
   }
 }
 
 /* Extra small mobile devices */
 @media (max-width: 360px) {
+  .category-label {
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+  }
+
+  .category-score {
+    font-size: 0.8rem;
+  }
+
   .flower-svg {
     min-height: 320px;
   }
