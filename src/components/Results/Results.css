@@ -2,13 +2,14 @@
   max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  padding: 40px var(--spacing-lg);
+  padding: clamp(20px, 5vw, 40px) var(--spacing-md);
+  box-sizing: border-box;
 
   & > h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 3vw, 20px);
     color: var(--color-primary);
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
   }
 }
 
@@ -18,39 +19,43 @@
 
 .final-evaluation {
   max-width: 800px;
-  margin: 0 auto;
-  padding: 0px 10px;
+  margin: 0 auto clamp(20px, 4vw, 40px);
+  padding: clamp(15px, 3vw, 20px) clamp(10px, 2vw, 20px);
   background-color: var(--color-primary-light);
   border-left: 4px solid var(--color-primary);
   border-radius: var(--radius-md);
+  box-sizing: border-box;
 
   & > h3 {
     color: var(--color-primary);
-    font-size: 1.8rem;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 3vw, 20px);
     text-align: center;
   }
 }
 
 .evaluation-content {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: clamp(15px, 3vw, 20px);
 }
 
 .evaluation-score {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 8vw, 4rem);
   font-weight: 700;
   color: var(--color-primary);
-  min-width: 100px;
+  min-width: clamp(60px, 15vw, 100px);
   text-align: center;
+  flex-shrink: 0;
 }
 
 .evaluation-message {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
   line-height: 1.6;
   color: var(--color-text);
+  text-shadow: #222 0.7px 0.7px 1.2px;
   text-align: left;
   margin: 0;
   font-weight: 500;
@@ -66,16 +71,18 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 70%;
+  width: 100%;
   max-width: 1100px;
+  padding: 0 var(--spacing-sm);
+  box-sizing: border-box;
 }
 
 .flower-svg {
   position: relative;
   width: 100%;
   height: auto;
-  min-height: 600px;
-  top: -60px;
+  min-height: clamp(400px, 50vw, 600px);
+  top: clamp(-30px, -4vw, -60px);
 }
 
 .category-label {
@@ -102,67 +109,71 @@
   }
 }
 
-@media (max-width: 1100px) {
+/* Tablet */
+@media (max-width: 768px) {
   .flower-svg {
-    min-height: 500px;
-  }
-  
-  .category-label {
-    font-size: 16px;
-  }
-  
-  .category-score {
-    font-size: 13px;
+    min-height: 450px;
   }
 
-  .final-evaluation {
-    padding: 20px;
+  .evaluation-content {
+    flex-direction: column;
+    text-align: center;
   }
 
   .evaluation-message {
-    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .category-label {
+    font-size: 2.2rem;
+  }
+
+  .category-score {
+    font-size: 1.8rem;
   }
 }
 
-@media (max-width: 768px) {
+/* Mobile - matching evaluation message size */
+@media (max-width: 480px) {
+  .results-container {
+    padding: clamp(15px, 4vw, 20px) var(--spacing-xs);
+  }
+
   .flower-svg {
-    min-height: 400px;
-  }
-  
-  .category-label {
-    font-size: 14px;
-  }
-  
-  .category-score {
-    font-size: 12px;
+    min-height: 380px;
   }
 
-  .overall-average {
-    font-size: 1.2rem;
-  }
-
-  .average-value {
-    font-size: 1.5rem;
+  .flower-chart {
+    padding: 0;
   }
 
   .final-evaluation {
-    & > h3 {
-      font-size: 1.5rem;
-    }
+    padding: 15px 10px;
   }
 
-  .evaluation-message {
-    font-size: 1rem;
+  .evaluation-content {
+    gap: 10px;
   }
 
-  .scale-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+  .evaluation-score {
+    min-width: 60px;
   }
 
-  .scale-range {
-    min-width: auto;
-    margin-right: 0;
+  /* Match label size to evaluation message (1rem baseline) */
+  .category-label {
+    font-size: 2.1rem;
+    letter-spacing: 0.3px;
+  }
+
+  .category-score {
+    font-size: 1.875rem;
+    font-weight: 600;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 360px) {
+  .flower-svg {
+    min-height: 320px;
   }
 }

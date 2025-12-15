@@ -1,7 +1,10 @@
 .category-menu {
-  width: 250px;
-  border-right: 1px solid var(--color-border-light);
-  padding-right: var(--spacing-lg);
+  width: 100%;
+  max-width: 250px;
+  border-right: none;
+  border-bottom: 1px solid var(--color-border-light);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
   scrollbar-width: none;
 }
 
@@ -10,7 +13,7 @@
   margin-bottom: var(--spacing-sm);
   padding-bottom: var(--spacing-sm);
   border-bottom: 2px solid var(--color-primary);
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -18,15 +21,16 @@
 }
 
 .category-group {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-md);
 }
 
 .category-title {
   cursor: pointer;
   margin: 0 0 var(--spacing-sm) 0;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   font-weight: 400;
   transition: color var(--transition-fast);
+  word-break: break-word;
 }
 
 .category-title:hover {
@@ -56,6 +60,7 @@
   text-align: center;
   transition: all var(--transition-fast);
   font-weight: normal;
+  font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 .question-item:hover {
@@ -68,4 +73,73 @@
   border-color: var(--color-success-border);
   color: inherit;
   font-weight: normal;
+}
+
+/* Mobile-only current category display */
+.current-category-mobile {
+  display: none;
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: rgba(199, 91, 122, 0.1);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-primary);
+}
+
+.current-category-mobile h3 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.current-category-mobile p {
+  margin: var(--spacing-xs) 0 0;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  color: var(--color-text-medium);
+}
+
+/* Desktop and larger tablets */
+@media (min-width: 769px) {
+  .category-menu {
+    border-right: 1px solid var(--color-border-light);
+    border-bottom: none;
+    padding-right: var(--spacing-lg);
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* Tablet - hide full menu, show mobile version */
+@media (max-width: 768px) {
+  .category-menu {
+    display: none;
+  }
+
+  .current-category-mobile {
+    display: block;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .category-menu {
+    display: none;
+  }
+
+  .current-category-mobile {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .current-category-mobile h3 {
+    font-size: 1rem;
+  }
+
+  .current-category-mobile p {
+    font-size: 0.85rem;
+  }
 }

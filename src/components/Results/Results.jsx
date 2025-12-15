@@ -208,8 +208,6 @@ export function Results({ results, categories }) {
           })}
         </svg>
       </div>
-
-      
     </div>
   );
 }

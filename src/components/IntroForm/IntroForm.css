@@ -1,272 +1,310 @@
 .intro-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(4px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    padding: var(--spacing-md);
 }
 
 .intro-modal {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-xl);
-  max-width: 600px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  color: var(--color-text);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: clamp(20px, 4vw, 32px);
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    color: var(--color-text);
+    box-sizing: border-box;
+}
 
-  & > h2 {
+.intro-modal > h2 {
     margin-top: 0;
     margin-bottom: 0.75rem;
     color: var(--color-text);
-    font-size: 1.8rem;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
     border-bottom: 2px solid #ff69b4;
     padding-bottom: 0.5rem;
-  }
+}
 
-  & > p {
+.intro-modal > p {
     color: var(--color-text-medium);
     margin-bottom: 1.5rem;
-  }
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
 
-  /* Scrollbar styling */
-  &::-webkit-scrollbar {
+/* Scrollbar styling */
+.intro-modal::-webkit-scrollbar {
     width: 10px;
-  }
+}
 
-  &::-webkit-scrollbar-track {
+.intro-modal::-webkit-scrollbar-track {
     background: var(--color-bg-dark);
     border-radius: var(--radius-sm);
-  }
+}
 
-  &::-webkit-scrollbar-thumb {
+.intro-modal::-webkit-scrollbar-thumb {
     background: var(--color-border-light);
     border-radius: var(--radius-sm);
+}
 
-    &:hover {
-      background: var(--color-border-lighter);
-    }
-  }
+.intro-modal::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-lighter);
 }
 
 .personal-info-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
 }
 
 .form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  &:first-child {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.form-row:first-child {
     grid-template-columns: 1fr;
-  }
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
 
-  & label {
+.form-group label {
     font-weight: 500;
     color: var(--color-text);
-    font-size: 0.9rem;
-  }
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
+}
 
-  & input,
-  & select {
-    padding: 0.65rem;
+.form-group input,
+.form-group select {
+    padding: clamp(0.5rem, 2vw, 0.65rem);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     background-color: var(--color-bg-dark);
     color: var(--color-text);
     transition: border-color var(--transition-medium), background-color var(--transition-medium);
     font-family: inherit;
+    box-sizing: border-box;
+}
 
-    &:focus {
-      outline: none;
-      border-color: #ff69b4;
-      background-color: var(--color-bg-light);
-    }
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #ff69b4;
+    background-color: var(--color-bg-light);
+}
 
-    &:hover {
-      outline: none;
-      border-color: #ff69b4;
-    }
+.form-group input:hover,
+.form-group select:hover {
+    outline: none;
+    border-color: #ff69b4;
+}
 
-    &::placeholder {
-      color: var(--color-text-lighter);
-    }
-  }
+.form-group input::placeholder {
+    color: var(--color-text-lighter);
+}
 
-  & select {
+.form-group select {
     cursor: pointer;
+}
 
-    & option {
-      background-color: var(--color-bg-dark);
-      color: var(--color-text);
-    }
-  }
+.form-group select option {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text);
 }
 
 .instructions {
-  margin: 1.5rem 0;
-  line-height: 1.6;
-  color: var(--color-text);
-  padding: 1rem;
-  background-color: rgba(255, 105, 180, 0.1);
-  border-left: 3px solid #ff69b4;
-  border-radius: var(--radius-sm);
+    margin: 1.5rem 0;
+    line-height: 1.6;
+    color: var(--color-text);
+    padding: clamp(0.75rem, 2vw, 1rem);
+    background-color: rgba(255, 105, 180, 0.1);
+    border-left: 3px solid #ff69b4;
+    border-radius: var(--radius-sm);
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
 
-  & p {
+.instructions p {
     margin-bottom: 1rem;
+}
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+.instructions p:last-child {
+    margin-bottom: 0;
+}
 
-    &:first-child {
-      margin-top: 0;
-    }
-  }
+.instructions p:first-child {
+    margin-top: 0;
+}
 
-  & strong {
+.instructions strong {
     color: #ff69b4;
     font-weight: 600;
-  }
 }
 
 .intro-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
 
-  & button {
+.intro-buttons button {
     border-radius: var(--radius-md);
     border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
+    padding: clamp(0.5em, 2vw, 0.6em) clamp(1em, 3vw, 1.2em);
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     font-weight: 500;
     font-family: inherit;
     background-color: var(--color-bg-dark);
     cursor: pointer;
     transition: border-color var(--transition-medium);
     color: var(--color-text);
-
-    &:hover:not(:disabled) {
-      border-color: #ff69b4;
-    }
-
-    &:disabled {
-      background-color: var(--color-bg-darker);
-      color: rgba(255, 255, 255, 0.3);
-      cursor: not-allowed;
-      border-color: transparent;
-    }
-  }
+    flex: 1;
+    min-width: 100px;
 }
 
-@media (max-width: 600px) {
-  .form-row {
-    grid-template-columns: 1fr;
-  }
+.intro-buttons button:hover:not(:disabled) {
+    border-color: #ff69b4;
+}
 
-  .intro-modal {
-    padding: 1.5rem;
-    width: 95%;
+.intro-buttons button:disabled {
+    background-color: var(--color-bg-darker);
+    color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+    border-color: transparent;
+}
 
-    & > h2 {
-      font-size: 1.5rem;
+/* Tablet */
+@media (max-width: 768px) {
+    .intro-overlay {
+        padding: var(--spacing-sm);
     }
-  }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .intro-overlay {
+        padding: var(--spacing-xs);
+        align-items: flex-start;
+        padding-top: 5vh;
+    }
+
+    .intro-modal {
+        padding: 1.25rem;
+        width: 100%;
+        max-height: 85vh;
+    }
+
+    .intro-modal > h2 {
+        font-size: 1.4rem;
+    }
+
+    .instructions {
+        margin: 1rem 0;
+    }
+
+    .intro-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .intro-buttons button {
+        width: 100%;
+    }
 }
 
 @media (prefers-color-scheme: light) {
-  .intro-modal {
-    background: var(--color-bg);
-    border-color: var(--color-border);
-    color: var(--color-text);
-
-    & > h2 {
-      color: var(--color-text);
-      border-bottom-color: #ff69b4;
+    .intro-modal {
+        background: var(--color-bg);
+        border-color: var(--color-border);
+        color: var(--color-text);
     }
 
-    & > p {
-      color: var(--color-text-medium);
+    .intro-modal > h2 {
+        color: var(--color-text);
+        border-bottom-color: #ff69b4;
     }
 
-    &::-webkit-scrollbar-track {
-      background: var(--color-bg-dark);
+    .intro-modal > p {
+        color: var(--color-text-medium);
     }
 
-    &::-webkit-scrollbar-thumb {
-      background: var(--color-border);
+    .intro-modal::-webkit-scrollbar-track {
+        background: var(--color-bg-dark);
+    }
 
-      &:hover {
+    .intro-modal::-webkit-scrollbar-thumb {
+        background: var(--color-border);
+    }
+
+    .intro-modal::-webkit-scrollbar-thumb:hover {
         background: var(--color-border-light);
-      }
-    }
-  }
-
-  .form-group {
-    & label {
-      color: var(--color-text);
     }
 
-    & input,
-    & select {
-      background-color: var(--color-bg-dark);
-      border-color: var(--color-border);
-      color: var(--color-text);
+    .form-group label {
+        color: var(--color-text);
+    }
 
-      &:focus {
+    .form-group input,
+    .form-group select {
+        background-color: var(--color-bg-dark);
+        border-color: var(--color-border);
+        color: var(--color-text);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
         background-color: var(--color-bg);
         border-color: #ff69b4;
-      }
+    }
 
-      &::placeholder {
+    .form-group input::placeholder {
         color: var(--color-text-lighter);
-      }
     }
 
-    & select option {
-      background-color: var(--color-bg-dark);
-      color: var(--color-text);
+    .form-group select option {
+        background-color: var(--color-bg-dark);
+        color: var(--color-text);
     }
-  }
 
-  .instructions {
-    color: var(--color-text);
-    background-color: rgba(255, 105, 180, 0.1);
-    border-left-color: #ff69b4;
-
-    & strong {
-      color: #ff1493;
+    .instructions {
+        color: var(--color-text);
+        background-color: rgba(255, 105, 180, 0.1);
+        border-left-color: #ff69b4;
     }
-  }
 
-  .intro-buttons button {
-    background-color: var(--color-bg-dark);
-    color: var(--color-text);
-
-    &:disabled {
-      background-color: var(--color-bg-darker);
-      color: var(--color-text-lighter);
+    .instructions strong {
+        color: #ff1493;
     }
-  }
+
+    .intro-buttons button {
+        background-color: var(--color-bg-dark);
+        color: var(--color-text);
+    }
+
+    .intro-buttons button:disabled {
+        background-color: var(--color-bg-darker);
+        color: var(--color-text-lighter);
+    }
 }

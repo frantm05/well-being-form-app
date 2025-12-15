@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useWellBeing } from "../../hooks/useWellBeing";
 import { CategoryMenu } from "../CategoryMenu/CategoryMenu";
 import { QuestionSlider } from "../QuestionSlider/QuestionSlider";
 import { Results } from "../Results/Results";
 import { IntroForm } from "../IntroForm/IntroForm";
+import { submitData } from "../../api/questions";
 import "./style.css";
 
 export default function App() {
@@ -35,6 +36,24 @@ export default function App() {
     setPersonalInfo(info);
     setShowIntro(false);
   };
+
+  useEffect(() => {
+    if (submitted && results && personalInfo) {
+      const payload = {
+        personalInfo: personalInfo,
+        results: results,
+      };
+
+      submitData(payload)
+        .then(() => {
+          console.log("Summary data successfully saved to Wix");
+          console.log("Submitted payload:", payload);
+        })
+        .catch((error) => {
+          console.error("Failed to save data:", error);
+        });
+    }
+  }, [submitted, results, personalInfo]);
 
   if (loadingError) {
     return (
@@ -102,12 +121,13 @@ export default function App() {
     <div className="app-container">
       {showIntro && <IntroForm onComplete={handleIntroComplete} />}
 
-      <h1>Well-being form</h1>
+      <h1>Well-being Form</h1>
       <div className="main-layout">
         <CategoryMenu
           categories={categories}
           answers={answers}
           currentCategoryKey={currentCategoryKey}
+          currentQuestionIndex={currentQuestionIndex}
           onSelectQuestion={handleSelectQuestion}
         />
         <main className="main-content">

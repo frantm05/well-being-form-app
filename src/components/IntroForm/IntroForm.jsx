@@ -2,20 +2,35 @@ import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import "./IntroForm.css";
 
+// Sanitization helper functions
+const sanitizeString = (str) => {
+  if (typeof str !== "string") return "";
+  // Remove any potential script tags and special characters
+  return str
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+    .replace(/[<>]/g, "")
+    .trim()
+    .slice(0, 100); // Limit length
+};
+
+const sanitizeNumber = (num) => {
+  const parsed = parseInt(num, 10);
+  return isNaN(parsed) ? "" : Math.max(0, Math.min(150, parsed)); // Age between 0-150
+};
+
 export function IntroForm({ onComplete }) {
   const [step, setStep] = useState(1);
   const [personalInfo, setPersonalInfo] = useState({
     firstName: "",
     lastName: "",
     age: "",
-    gender: null, // Changed to null for AsyncSelect
+    gender: null,
     country: null,
     university: null,
     faculty: "",
     major: "",
   });
 
-  // Gender options as async function
   const loadGenderOptions = (inputValue) => {
     const genderOptions = [
       { value: "male", label: "Male" },
@@ -85,7 +100,23 @@ export function IntroForm({ onComplete }) {
   };
 
   const handleChange = (field, value) => {
-    setPersonalInfo((prev) => ({ ...prev, [field]: value }));
+    let sanitizedValue = value;
+
+    // Sanitize based on field type
+    if (field === "age") {
+      sanitizedValue = sanitizeNumber(value);
+    } else if (typeof value === "string") {
+      sanitizedValue = sanitizeString(value);
+    } else if (value && typeof value === "object" && value.value) {
+      // For select options, sanitize the values
+      sanitizedValue = {
+        ...value,
+        value: sanitizeString(value.value),
+        label: sanitizeString(value.label),
+      };
+    }
+
+    setPersonalInfo((prev) => ({ ...prev, [field]: sanitizedValue }));
   };
 
   const isPersonalInfoComplete = () => {
