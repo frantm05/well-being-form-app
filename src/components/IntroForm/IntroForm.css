@@ -234,6 +234,7 @@
     }
 }
 
+/*
 @media (prefers-color-scheme: light) {
     .intro-modal {
         background: var(--color-bg);
@@ -307,4 +308,4 @@
         background-color: var(--color-bg-darker);
         color: var(--color-text-lighter);
     }
-}
+}*/

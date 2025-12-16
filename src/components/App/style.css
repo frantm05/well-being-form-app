@@ -346,6 +346,7 @@
     }
 }
 
+/*
 @media (prefers-color-scheme: light) {
     .modal-content {
         background-color: var(--color-bg);
@@ -365,3 +366,4 @@
         background-color: var(--color-bg);
     }
 }
+*/

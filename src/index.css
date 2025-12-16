@@ -86,7 +86,7 @@ textarea,
   -moz-user-select: text;
   -ms-user-select: text;
 }
-
+/*
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -99,3 +99,4 @@ textarea,
     background-color: #f9f9f9;
   }
 }
+*/
