@@ -37,14 +37,21 @@ export default function App() {
     setShowIntro(false);
   };
 
+  const getBackendCategoryKey = (displayCategory) => {
+    return displayCategory.split(" (")[0].trim().replace(/\s+/g, "_");
+  };
+
   useEffect(() => {
     if (submitted && results && personalInfo) {
       const flattenedAnswers = {};
 
       Object.keys(categories).forEach((catKey) => {
         const cat = categories[catKey];
+
+        const backendCatKey = getBackendCategoryKey(catKey);
+
         cat.questions.forEach((q, index) => {
-          const questionKey = `${catKey}_Q${index + 1}`;
+          const questionKey = `${backendCatKey}_Q${index + 1}`;
 
           flattenedAnswers[questionKey] = answers?.[catKey]?.[q.id] ?? "";
         });
