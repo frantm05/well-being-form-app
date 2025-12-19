@@ -104,7 +104,7 @@ export function Results({ results, categories }) {
 
   return (
     <div className="results-container">
-      <h2>Your Well-being Evaluation</h2>
+      <h2>Your Well-being Score</h2>
 
       <div className="final-evaluation">
         <div className="evaluation-content">

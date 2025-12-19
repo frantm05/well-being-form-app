@@ -39,21 +39,45 @@ export default function App() {
 
   useEffect(() => {
     if (submitted && results && personalInfo) {
+      const flattenedAnswers = {};
+
+      Object.keys(categories).forEach((catKey) => {
+        const cat = categories[catKey];
+        cat.questions.forEach((q, index) => {
+          const questionKey = `${catKey}_Q${index + 1}`;
+
+          flattenedAnswers[questionKey] = answers?.[catKey]?.[q.id] ?? "";
+        });
+      });
+
       const payload = {
-        personalInfo: personalInfo,
-        results: results,
+        personalInfo: {
+          nickname: personalInfo.firstName, // This sends 'nickname' to backend
+          age: personalInfo.age,
+          gender: personalInfo.gender?.value || personalInfo.gender,
+          country: personalInfo.country?.value || personalInfo.country,
+          university: personalInfo.university?.value || personalInfo.university,
+          faculty: personalInfo.faculty,
+          major: personalInfo.major,
+        },
+        // This sends 'overallScore' to backend
+        overallScore: results.overall
+          ? (
+              results.overall /
+              Object.keys(categories).reduce(
+                (sum, key) => sum + categories[key].questions.length,
+                0
+              )
+            ).toFixed(2)
+          : 0,
+        answers: flattenedAnswers,
       };
 
       submitData(payload)
-        .then(() => {
-          console.log("Summary data successfully saved to Wix");
-          console.log("Submitted payload:", payload);
-        })
-        .catch((error) => {
-          console.error("Failed to save data:", error);
-        });
+        .then(() => console.log("Data saved"))
+        .catch((error) => console.error("Failed:", error));
     }
-  }, [submitted, results, personalInfo]);
+  }, [submitted, results, personalInfo, categories, answers]);
 
   if (loadingError) {
     return (

@@ -28,12 +28,12 @@ export default defineConfig({
       },
       // Forward submit requests to Wix function
       "/api/submitResponse": {
-        target: "https://matejfrantik.wixsite.com",
-        //target: "https://www.uniwellsity.com",
+        //target: "https://matejfrantik.wixsite.com",
+        target: "https://www.uniwellsity.com",
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => "/well-being-form/_functions/submitResponse",
-        //rewrite: (path) => "/_functions/submitResponse",
+        //rewrite: (path) => "/well-being-form/_functions/submitResponse",
+        rewrite: (path) => "/_functions/submitResponse",
       },
     },
   },

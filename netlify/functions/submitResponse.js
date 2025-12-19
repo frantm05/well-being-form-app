@@ -14,9 +14,9 @@ const validatePayload = (data) => {
     throw new Error('Invalid personal info');
   }
 
-  // Validate results
-  if (!data.results || typeof data.results !== 'object') {
-    throw new Error('Invalid results format');
+  // Validate answers
+  if (!data.answers || typeof data.answers !== 'object') {
+    throw new Error('Invalid answers format');
   }
 
   // Check for suspicious patterns
@@ -40,7 +40,7 @@ const validatePayload = (data) => {
 };
 
 export async function handler(event, context) {
-    const WIX_API_URL = 'https://matejfrantik.wixsite.com/well-being-form/_functions/submitResponse';
+    const WIX_API_URL = 'https://www.uniwellsity.com/_functions/submitResponse';
 
     // Handle preflight OPTIONS request
     if (event.httpMethod === "OPTIONS") {
@@ -71,13 +71,15 @@ export async function handler(event, context) {
             };
         }
 
+        console.log("Received data:", JSON.stringify(data, null, 2));
+
         // Validate payload
         validatePayload(data);
 
-        // Sanitize and restructure data - only send summary, not full answers
+        // Sanitize data - keep original field IDs from Wix
         const sanitizedData = {
             personalInfo: {
-                firstName: sanitizeString(data.personalInfo?.firstName || ''),
+                nickname: sanitizeString(data.personalInfo?.nickname || ''),
                 age: Math.max(0, Math.min(150, parseInt(data.personalInfo?.age, 10) || 0)),
                 gender: sanitizeString(data.personalInfo?.gender || ''),
                 country: sanitizeString(data.personalInfo?.country || ''),
@@ -85,19 +87,23 @@ export async function handler(event, context) {
                 faculty: sanitizeString(data.personalInfo?.faculty || ''),
                 major: sanitizeString(data.personalInfo?.major || '')
             },
-            results: {
-                categoryScores: data.results?.categoryScores?.map(score => ({
-                    category: sanitizeString(score.category || ''),
-                    avg: Number(score.avg) || 0
-                })) || [],
-                overall: Number(data.results?.overall) || 0
-            }
-            // Note: No timestamp, no full answers JSON
+            overallScore: Number(data.overallScore) || 0,
+            // Keep the original field IDs from the database
+            answers: Object.entries(data.answers || {}).reduce((acc, [key, value]) => {
+                // Don't modify the key - use it as-is from the database
+                const numValue = Number(value);
+                if (!isNaN(numValue) && numValue >= 0 && numValue <= 10) {
+                    acc[key] = numValue;
+                } else if (value === '' || value === null || value === undefined) {
+                    acc[key] = '';
+                }
+                return acc;
+            }, {})
         };
 
-        console.log("Sending sanitized data to Wix API (without full answers and timestamp)");
+        console.log("Sending sanitized data to Wix:", JSON.stringify(sanitizedData, null, 2));
 
-        // Přeposlání dat na Wix
+        // Forward to Wix
         const response = await fetch(WIX_API_URL, {
             method: "POST",
             headers: {
@@ -115,6 +121,7 @@ export async function handler(event, context) {
         }
 
         const responseData = await response.json();
+        console.log("Wix response:", responseData);
 
         return {
             statusCode: 200,
